@@ -1,3 +1,15 @@
+const express = require('express');
+const puppeteer = require('puppeteer');
+const cors = require('cors');
+
+const app = express();
+const PORT = 3000;
+
+// Middleware
+app.use(express.json());
+app.use(cors());
+
+// API pour récupérer les données
 app.post('/fetch-data', async (req, res) => {
     const { username, password } = req.body;
 
@@ -46,3 +58,9 @@ app.post('/fetch-data', async (req, res) => {
         res.status(500).json({ error: "Erreur serveur : " + error.message }); // Envoie l'erreur détaillée dans la réponse
     }
 });
+
+app.listen(PORT, () => {
+    console.log(`Serveur API lancé sur http://localhost:${PORT}`);
+});
+
+       
