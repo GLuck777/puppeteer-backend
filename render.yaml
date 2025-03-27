@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: puppeteer-backend
+    env: node
+    buildCommand: "npm install"
+    startCommand: "node app/server.cjs"
+    plan: free
+    envVars:
+      - key: CHROMIUM_PATH
+        value: "/usr/bin/chromium"
+    autoDeploy: true
+    build:
+      # Ajouter le processus d'installation de Chromium ici
+      command: |
+        apt-get update
+        apt-get install -y chromium

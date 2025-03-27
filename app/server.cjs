@@ -1,5 +1,9 @@
+const path = require('path');
+const fs = require('fs');
 const express = require('express');
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
+const executablePath = '/usr/bin/chromium';
 const cors = require('cors');
 
 const app = express();
@@ -8,6 +12,13 @@ const PORT = 3000;
 // Middleware
 app.use(express.json());
 app.use(cors());
+
+// Vérification si Chromium est installé
+const chromiumPath = '/usr/bin/chromium';  // Chemin typique sur un serveur Linux
+if (!fs.existsSync(chromiumPath)) {
+  console.error('Chromium n\'est pas installé sur le serveur.');
+  process.exit(1);  // Arrêter le serveur si Chromium n'est pas disponible
+}
 
 // API pour récupérer les données
 app.post('/fetch-data', async (req, res) => {
@@ -19,14 +30,15 @@ app.post('/fetch-data', async (req, res) => {
 
     try {
         const browser = await puppeteer.launch({
-            headless: "new",
+            headless: true, // ou 'new'
+            executablePath, // Spécifie le chemin de Chrome/Chromium
             args: [
-                "--no-sandbox",
-                "--disable-setuid-sandbox",
-                "--disable-dev-shm-usage",
-                "--disable-gpu"
-            ]
-        });
+              '--no-sandbox',
+              '--disable-setuid-sandbox',
+              '--disable-dev-shm-usage',
+              '--disable-gpu',
+            ],
+          });
 
         const page = await browser.newPage();
         const loginUrl = "https://hub.zone01normandie.org/emargement/index.php";
