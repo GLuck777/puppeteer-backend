@@ -1,0 +1,20 @@
+{
+  "name": "chronosz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsdom": "^26.0.0",
+    "node-fetch": "^2.7.0",
+    "puppeteer": "^24.4.0"
+  }
+}
