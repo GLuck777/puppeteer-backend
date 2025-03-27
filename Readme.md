@@ -1,11 +1,34 @@
-Pour demmarrer le projet 
-```bash
-node app/server.cjs
-```
+Étapes pour déployer ton backend sur Render
 
-Pour utiliser le projet en local http://localhost:3000
-dossier "app", fichier app.js, ligne 272 
-enlever les "//"
-let response = await fetch("http://localhost:3000/fetch-data",{
-et mettez "//" ligne 273
-a let response = await fetch("https://gluck777.github.io/ChronosZ01/fetch-data",{
+    Créer un compte sur Render
+    👉 https://render.com
+
+    Lier ton dépôt GitHub
+
+        Clique sur "New +" → "Web Service"
+
+        Sélectionne ton repo GitHub contenant server.cjs
+
+    Configurer ton backend
+
+        Branch : choisis main (ou ta branche de travail)
+
+        Runtime : Node.js
+
+        Build Command : npm install
+
+        Start Command : node server.cjs
+
+        Region : prends la plus proche
+
+    Déployer automatiquement 🚀
+
+        Active Auto Deploy pour qu'à chaque push, Render redéploie ton backend
+
+    Attendre le déploiement ⏳
+
+        Render va builder et démarrer ton serveur
+
+        À la fin, tu obtiendras une URL du type :
+
+https://ton-backend.onrender.com
