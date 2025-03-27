@@ -19,7 +19,14 @@ app.post('/fetch-data', async (req, res) => {
 
     try {
         const browser = await puppeteer.launch({
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
+            headless: "new",
+            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined, // Ajout de cette ligne
+            args: [
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-gpu"
+            ]
         });
         const page = await browser.newPage();
         const loginUrl = "https://hub.zone01normandie.org/emargement/index.php";
